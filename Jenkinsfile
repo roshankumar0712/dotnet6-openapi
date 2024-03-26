@@ -17,7 +17,7 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
-                    docker.withRegistry('https://hub.docker.com/repository/docker/sasidharan31/my_test/general', 'dockerhub_credentials') {
+                    docker.withRegistry('https://hub.docker.com/repository/docker/sasidharan31/my_test/general', 'DOCKER_CREDENTIALS') {
                         docker.image(env.sasidharan_31/latest).push()
                     }
                 }
