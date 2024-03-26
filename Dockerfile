@@ -1,11 +1,11 @@
-# Use an official Nginx image as the base
-FROM hello-world:latest
+# Use an official Python runtime as the base image
+FROM python:3.9-slim
 
-# Install curl
-RUN apk add --no-cache curl
+# Set the working directory in the container
+WORKDIR /app
 
-# Download index.html from GitHub and copy it to Nginx default public directory
-RUN curl -o /usr/share/nginx/html/index.html https://raw.githubusercontent.com/sasidharan3112/my_Jenkins/main/index.html
+# Copy a simple Python script that prints "Hello, World!" into the container
+COPY app.py .
 
-# Expose port 80 to allow external access to the web server
-EXPOSE 80
+# Define a command to run when the container starts
+CMD ["python", "app.py"]
