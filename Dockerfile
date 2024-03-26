@@ -1,5 +1,5 @@
 # Use an official Nginx image as the base
-FROM nginx:alpine
+FROM hello-world:latest
 
 # Install curl
 RUN apk add --no-cache curl
