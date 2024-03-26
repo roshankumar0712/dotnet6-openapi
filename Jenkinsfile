@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         DOCKER_IMAGE = 'sasidharan31/my_test:latest'
+        DOCKER_CREDENTIALS = 'Dockerhub_Credentials'
     }
 
     stages {
