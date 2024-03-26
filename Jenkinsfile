@@ -16,7 +16,7 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub_credentials') {
+                    docker.withRegistry('https://hub.docker.com/repository/docker/sasidharan31/my_test/general', 'dockerhub_credentials') {
                         docker.image(env.DOCKER_IMAGE).push()
                     }
                 }
