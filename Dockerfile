@@ -5,12 +5,10 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /app
 
 # Copy the .NET application files to the working directory
-COPY dotnet6-openapi/ ./
+COPY dotnet6-openapi/api/ ./
 
-# Restore dependencies
+# Restore dependencies and build the application
 RUN dotnet restore api.csproj
-
-# Build the application
 RUN dotnet build -c Release -o /app/build
 
 # Expose the port(s) your application listens on
