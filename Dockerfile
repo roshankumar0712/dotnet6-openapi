@@ -5,7 +5,7 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /app
 
 # Copy the .NET application files to the working directory
-COPY dotnet6_api/ ./
+COPY dotnet6-openapi/ ./
 
 # Restore dependencies
 RUN dotnet restore
