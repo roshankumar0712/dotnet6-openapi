@@ -8,7 +8,7 @@ WORKDIR /app
 COPY dotnet6-openapi/ ./
 
 # Restore dependencies
-RUN dotnet restore
+RUN dotnet restore api.csproj
 
 # Build the application
 RUN dotnet build -c Release -o /app/build
