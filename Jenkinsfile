@@ -4,9 +4,15 @@ pipeline {
     environment {
         DOCKER_CREDENTIALS = 'Dockerhub_Credentials'
         DOCKER_IMAGE = 'sasidharan31/my_test:latest'
-    }
+    }  
+    
 
     stages {
+        stage('Clone Repository') {
+            steps {
+                checkout([$class: 'GitSCM', branches: [[name: 'main']], userRemoteConfigs: [[url: 'https://github.com/sasidharan3112/dotnet_app.git']]])
+            }
+        }
         stage('Build Docker Image') {
             steps {
                 script {
@@ -18,7 +24,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://index.docker.io/v1/', env.DOCKER_CREDENTIALS) {
-                        docker.image('sasidharan31/my_test:latest').push()
+                        docker.image(env.DOCKER_IMAGE).push()
                     }
                 }
             }
