@@ -1,11 +1,24 @@
-# Use an official Python runtime as the base image
-FROM python:3.9-slim
+# Use the appropriate SDK image for building the .NET application
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 
-# Set the working directory in the container
+# Set the working directory inside the container
 WORKDIR /app
 
-# Copy the current directory contents into the container at /app
-COPY . /app
+# Copy the .NET application project files to the working directory
+COPY dotnet6-openapi/*.csproj ./
 
-# Run a simple Python script that prints "Hello, World!" when the container launches
-CMD ["python", "-c", "print('Hello, World!')"]
+# Restore dependencies
+RUN dotnet restore
+
+# Copy the remaining source code to the working directory
+COPY dotnet6-openapi/ ./
+
+# Build the application
+RUN dotnet build
+
+# Expose the port(s) your application listens on
+EXPOSE 5000
+
+# Define the entry point for running the application
+ENTRYPOINT ["dotnet", "run"]
+
